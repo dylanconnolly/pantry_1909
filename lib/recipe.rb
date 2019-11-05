@@ -24,12 +24,11 @@ class Recipe
     end
   end
 
-  def ingredients_in_order_of_calories
+  def ingredients_in_order_of_calories_with_amount
     ingredients = @ingredients_required.sort_by do |ingredient, amount|
       (ingredient.calories * amount)
-    end
-    ingredients.map do |ingredient|
-      ingredient[0]
     end.reverse
+    # ingredients.map do |ingredient|
+    #   ingredient[0]
   end
 end

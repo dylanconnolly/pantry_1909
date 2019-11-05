@@ -56,6 +56,6 @@ class RecipeTest < Minitest::Test
     @mac_and_cheese.add_ingredient(@cheese, 2)
     @mac_and_cheese.add_ingredient(@mac, 8)
 
-    assert_equal [@mac, @cheese], @mac_and_cheese.ingredients_in_order_of_calories
+    assert_equal [@mac, @cheese], @mac_and_cheese.ingredients_in_order_of_calories_with_amount
   end
 end
