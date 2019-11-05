@@ -45,5 +45,13 @@ class PantryTest < Minitest::Test
     @pantry.restock(@cheese, 5)
 
     assert_equal false, @pantry.enough_ingredients_for?(@mac_and_cheese)
+
+    @pantry.restock(@mac, 7)
+
+    assert_equal false, @pantry.enough_ingredients_for?(@mac_and_cheese)
+
+    @pantry.restock(@mac, 1)
+
+    assert_equal true, @pantry.enough_ingredients_for?(@mac_and_cheese)
   end
 end
