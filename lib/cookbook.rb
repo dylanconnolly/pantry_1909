@@ -23,7 +23,7 @@ class CookBook
   end
 
   def summary
-    x = @recipes.map do |recipe|
+    @recipes.map do |recipe|
       recipe_info = {}
       recipe_info[:name] = recipe.name
       recipe_info[:details] = recipe_details(recipe)
