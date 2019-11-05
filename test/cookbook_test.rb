@@ -20,8 +20,6 @@ class CookBookTest < Minitest::Test
     @burger = Recipe.new("Burger")
     @burger.add_ingredient(ground_beef, 4)
     @burger.add_ingredient(bun, 100)
-    # @cookbook.add_recipe(@mac_and_cheese)
-    # @cookbook.add_recipe(@burger)
   end
 
   def test_it_exists
@@ -37,5 +35,22 @@ class CookBookTest < Minitest::Test
     @cookbook.add_recipe(@burger)
 
     assert_equal [@mac_and_cheese, @burger], @cookbook.recipes
+  end
+
+  def test_recipe_details
+    @cookbook.add_recipe(@mac_and_cheese)
+
+    expected = {:ingredients=>[{:ingredient=>"Macaroni", :amount=>"8 oz"}, {:ingredient=>"Cheese", :amount=>"2 C"}], :total_calories=>440}
+
+    assert_equal expected, @cookbook.recipe_details(@mac_and_cheese)
+  end
+
+  def test_summary
+    @cookbook.add_recipe(@mac_and_cheese)
+    @cookbook.add_recipe(@burger)
+
+    expected = [{:name=>"Mac and Cheese", :details=>{:ingredients=>[{:ingredient=>"Macaroni", :amount=>"8 oz"}, {:ingredient=>"Cheese", :amount=>"2 C"}], :total_calories=>440}}, {:name=>"Burger", :details=>{:ingredients=>[{:ingredient=>"Ground Beef", :amount=>"4 oz"}, {:ingredient=>"Bun", :amount=>"100 g"}], :total_calories=>500}}]
+
+    assert_equal expected, @cookbook.summary
   end
 end
